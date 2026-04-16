@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NWONE - 누리네트웍스 종합 관리 포털</title>
+<link rel="stylesheet" href="nwone.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%231B3A8C'/><text x='16' y='22' text-anchor='middle' fill='%23F0B429' font-size='16' font-weight='800' font-family='sans-serif'>NW</text></svg>">
+</head>
+<body>
+
+<!-- ===== LOGIN SCREEN ===== -->
+<div id="loginScreen" class="login-wrap">
+  <div class="login-card">
+    <div class="login-logo">
+      <div class="login-logo-icon">NW</div>
+      <div style="text-align:left">
+        <div class="login-title">NWONE</div>
+        <div class="login-subtitle">NuriWorks ONE v1.0</div>
+      </div>
+    </div>
+    <div class="login-desc">누리네트웍스 종합 관리 포털</div>
+
+    <div id="loginStep1">
+      <button class="btn-google" onclick="handleGoogleLogin()">
+        <svg width="20" height="20" viewBox="0 0 48 48"><path fill="#4285F4" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#34A853" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#EA4335" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+        <span id="googleBtnText">Google 계정으로 로그인</span>
+      </button>
+      <div style="margin-top:20px;font-size:11px;color:#86868b">@posone.co.kr · @gmail.com</div>
+    </div>
+
+    <div id="loginStep2" style="display:none">
+      <div class="totp-divider"><span>2단계 인증</span></div>
+      <div class="totp-inputs" id="totpInputs"></div>
+      <div style="font-size:12px;color:#86868b">Google Authenticator 6자리 코드</div>
+    </div>
+
+    <div class="login-footer">admin.nwpos.co.kr</div>
+  </div>
+</div>
+
+<!-- ===== APP SHELL ===== -->
+<div id="appShell" class="app hidden">
+
+  <!-- SIDEBAR -->
+  <nav id="sidebar" class="sidebar">
+    <div class="sidebar-header" onclick="toggleSidebar()">
+      <div class="sidebar-logo">NW</div>
+      <div class="sidebar-brand-wrap">
+        <div class="sidebar-brand">NWONE</div>
+        <div class="sidebar-version">v1.0</div>
+      </div>
+    </div>
+    <div class="sidebar-nav" id="sidebarNav"></div>
+    <div class="sidebar-user">
+      <div class="sidebar-avatar">강</div>
+      <div class="sidebar-user-info">
+        <div class="sidebar-user-name">강길봉 전무</div>
+        <div class="sidebar-user-role">관리자</div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <div class="main">
+    <!-- TOP HEADER -->
+    <header class="top-header">
+      <input type="text" class="search-input" placeholder="검색 (가맹점, 일정, 민원...)">
+      <div class="header-right">
+        <div class="session-timer">
+          <span id="timerDisplay">120:00</span>
+          <button class="btn-extend" onclick="resetTimer()">연장</button>
+        </div>
+        <div class="notify-btn">🔔<div class="notify-dot"></div></div>
+        <span class="header-user">강길봉</span>
+        <button class="btn-logout" onclick="handleLogout()">로그아웃</button>
+      </div>
+    </header>
+
+    <!-- TAB BAR -->
+    <div class="tab-bar" id="tabBar"></div>
+
+    <!-- CONTENT -->
+    <div class="content" id="pageContent"></div>
+  </div>
+</div>
+
+<script src="nwone.js"></script>
+</body>
+</html>
